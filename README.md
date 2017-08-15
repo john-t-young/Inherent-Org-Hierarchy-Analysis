@@ -9,7 +9,8 @@ Purpose
 ======
 The data analysis performed on this particular data set will be used for identifying inherent organizational hierarchy of a client corporation without needing the actual organizational structure to guide the analysis.  The conclusion of this data science project will suggest one of two outcomes: that the inherent working organizational structure matches with actual management/HR defined structures or that an alternate working hierarchy has evolved within the corporation that supplements adn/or transcends current HR defined structures.    
 
-#### Data Set Initial Summary
+Data Set Initial Summary
+========
 The data set is currently stored in a flat file in CSV format.  It contains ten columns: *"Mailbox", "User.Geo", "User.Time.zone", "ORG", "Organizer", "Start.Time", "End.Time", "Duration", "Required.Attendees", "Optional.Attendees"*. 
 
 Validity of data per vector has been listed below:
