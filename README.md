@@ -22,7 +22,7 @@ Validity of data per vector has been listed below:
 9. Required.Attendees -- Vector is not fully populated.  There are 148,305 empty cells.  **Is this a valid outcome?**
 10. Optional.Attendees -- Vector is not fully populated but this is an optional field.
 
-==========================================================================================
+____
 
 #### Action Items -- Mandatory
 1. Debug and finalize NA identification code.  Current `sapply(mydata, function(y) sum(length(which(is.na(y)))))` isn't catching the NAs I verified again via `grep`.  I'm investigating further and should have an answer by tomorrow.  I have a couple hunches related to csv ingestion and data structure that may be causing this bad summary.
