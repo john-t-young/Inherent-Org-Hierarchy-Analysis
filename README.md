@@ -7,7 +7,7 @@ This project is conducted under guidance of Professor Thomas Lee, Visiting Adjun
 #### Purpose
 The data analysis performed on this particular data set will be used for identifying inherent organizational hierarchy of a client corporation without needing the actual organizational structure to guide the analysis.  The conclusion of this data science project will suggest one of two outcomes: that the inherent working organizational structure matches with actual management/HR defined structures or that an alternate working hierarchy has evolved within the corporation that supplements adn/or transcends current HR defined structures.    
 
-#### Data Set Summary
+#### Data Set Initial Summary
 The data set is currently stored in a flat file in CSV format.  It contains ten columns: *"Mailbox", "User.Geo", "User.Time.zone", "ORG", "Organizer", "Start.Time", "End.Time", "Duration", "Required.Attendees", "Optional.Attendees"*. 
 
 Validity of data per vector has been listed below:
@@ -21,3 +21,13 @@ Validity of data per vector has been listed below:
 8. Duration -- Vector is not fully populated.   **Interesting outliers where meeting time is 0 minutes long.  Does not look like placeholders either since there are attendees but that could be a poor assumption**
 9. Required.Attendees -- Vector is not fully populated.  There are 148,305 empty cells.  **Is this a valid outcome?**
 10. Optional.Attendees -- Vector is not fully populated but this is an optional field.
+
+==========================================================================================
+
+#### Action Items -- Mandatory
+1. Debug and finalize NA identification code.  Current `sapply(mydata, function(y) sum(length(which(is.na(y)))))` isn't catching the NAs I verified again via `grep`.  I'm investigating further and should have an answer by tomorrow.  I have a couple hunches related to csv ingestion and data structure that may be causing this bad summary.
+2. Finalize script that identifies common attendees relative to a User-Organizer Pair.  This will help us test one of the primary hypothesis that meetings are generally called for core groups with flex/optional attendees.
+3. Finalize script that identifies common date-time combinations with duration.  This will be a secondary verification of the prior hypothesis.
+
+#### Action Items -- Optional
+1. Add extra lines of code to correct incorrect values in User.Geo.  **Prof Lee, do you have any suggestions on what to convert User.Geo to if its designated 0 currently?  I left this as an optional fix since it may not be as relevant an omission v ORG column null value?**
