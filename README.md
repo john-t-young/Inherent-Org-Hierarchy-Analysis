@@ -11,6 +11,6 @@ The data analysis performed on this particular data set will be used for identif
 The data set is currently stored in a flat file in CSV format.  It contains ten columns: *"Mailbox", "User.Geo", "User.Time.zone", "ORG", "Organizer", "Start.Time", "End.Time", "Duration", "Required.Attendees", "Optional.Attendees"*. 
 
 Validity of data per vector has been listed below:
-#1 Mailbox -- Vector is fully populated and has no missing values or incorrect values.
-#2. User.Geo -- Vector is fully populated but has 2,368 incorrect values.  All incorrect values == "0".  Not catching this in the R script because 0 is a valid number while the script is only looking for NaN errors.  [JY] will add an extra line or two of code to deal with this.
-#3. User.Time.zone -- Vector is fully populated but has 2,368 incorrect values, possibly and this likely has a root problem similar to User.Geo.  Possible incorrect values == "0", with necessary condition that User.Geo == "0".  Not catching this in the R script because 0 is a valid number while the script is only looking for NaN errors.  [JY] will add an extra line or two of code to deal with this and 2.
+1. Mailbox -- Vector is fully populated and has no missing values or incorrect values.
+2. User.Geo -- Vector is fully populated but has 2,368 incorrect values.  All incorrect values == "0".  Not catching this in the R script because 0 is a valid number while the script is only looking for NaN errors.  [JY] will add an extra line or two of code to deal with this.
+3. User.Time.zone -- Vector is fully populated but has 2,368 incorrect values, possibly and this likely has a root problem similar to User.Geo.  Possible incorrect values == "0", with necessary condition that User.Geo == "0".  Not catching this in the R script because 0 is a valid number while the script is only looking for NaN errors.  [JY] will add an extra line or two of code to deal with this and 2.
