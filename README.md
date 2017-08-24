@@ -17,8 +17,8 @@ Validity of data per vector has been listed below:
 1. Mailbox -- Vector is fully populated. 
 2. User.Geo -- Vector is fully populated but has 2,733 incorrect values.  All incorrect values == "0".  Not catching this in the R script because 0 is a valid number while the script is only looking for NA errors.  **[JY] will add an extra line or two of code to deal with this.**
 3. User.Time.zone -- Vector is fully populated but has 2,733 incorrect values.  Its a high certainty that all of these values are also incorrect but it is not a guarantee.  Reason is because it is possible that we are missing User Geo data but the user was actually at GMT 0 time zone; unlikely but possible.  Possible incorrect values == "0", with necessary condition that User.Geo == "0".  Not catching this in the R script because 0 is a valid number while the script is only looking for NA errors.  **[JY] will add an extra line or two of code to deal with the second issue along with User.Geo issue.**
-4. ORG -- Vector is not fully populated and has 30 NA values.  Not catching this in the R script which is an issue.  It also has 13,079 incorrect values.  Incorrect values == "0".  Not catching this in the R script because 0 is a valid number while the script is only looking for NA errors.  [JY] will add an extra line or two of code to deal with the second issue.  
-**NA issue is not showing up in count because initial ingest only returned ~29% of total records.  Cleaning up read.csv script**
+4. ORG -- Vector is not fully populated and has 30 NA values.  It also has 13,079 incorrect values.  Incorrect values == "0".  Not catching this in the R script because 0 is a valid number while the script is only looking for NA errors.  [JY] will add an extra line or two of code to deal with the second issue.  
+**NA issue wasn't showing up in count because initial ingest only returned ~29% of total records.  Cleaning up read.csv script with na.strings="" parameter.**
 5. Organizer -- Vector is fully populated and but has 2 incorrect values.  NA is actually a text string in this case.  **[JY] to add an extra line of code to find none standard syntax strings, i.e. User XXXX or Ext XXXX**
 6. Start Time -- Vector is fully populated and has no missing values or incorrect values.
 7. End Time -- Vector is fully populated and has no missing values or incorrect values.  **There are interesting outliers with meetings ending in 2021**
@@ -26,10 +26,12 @@ Validity of data per vector has been listed below:
 9. Required.Attendees -- Vector is not fully populated.  There are 148,305 empty cells.  **Is this a valid outcome?**
 10. Optional.Attendees -- Vector is not fully populated but this is an optional field.
 
-____
+
 
 #### Action Items -- Mandatory
-1. Debug and finalize NA identification code.  Current `sapply(mydata, function(y) sum(length(which(is.na(y)))))` isn't catching the NAs I verified again via `grep`.  I'm investigating further and should have an answer by tomorrow.  I have a couple hunches related to csv ingestion and data structure that may be causing this bad summary.
+1. Debug and finalize NA identification code.  I have a couple hunches related to csv ingestion and data structure that may be causing this bad summary.
+UPDATE -- This was related to the csv ingestion code and by including na.strings = "" parameter, we're able to find every single null record.
+
 2. Finalize script that identifies common attendees relative to a User-Organizer Pair.  This will help us test one of the primary hypothesis that meetings are generally called for core groups with flex/optional attendees.
 3. Finalize script that identifies common date-time combinations with duration.  This will be a secondary verification of the prior hypothesis.
 
